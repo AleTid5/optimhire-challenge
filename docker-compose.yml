@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  main:
+    container_name: optimhire-challenge-docker
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    command: npm run start:dev
+    env_file:
+      - .env
