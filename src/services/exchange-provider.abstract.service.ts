@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Exchange } from '../models/exchange';
+import { Exchange } from '../schemas/exchange.schema';
 
 @Injectable()
 export default abstract class ExchangeProviderAbstractService {
@@ -10,7 +10,7 @@ export default abstract class ExchangeProviderAbstractService {
   protected abstract transformData(): void;
 
   private saveData(): void {
-    console.log(this.exchange.getValue());
+    console.log(this.exchange.value);
   }
 
   public execute(): void {
