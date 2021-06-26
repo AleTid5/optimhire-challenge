@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from '../controllers/app.controller';
+import { UserController } from '../controllers/user.controller';
+import { ExchangeController } from '../controllers/exchange.controller';
 import { AppService } from '../services/app.service';
 import { AuthModule } from './auth.module';
 import { UserModule } from './user.module';
@@ -15,7 +16,7 @@ import { SeedModule } from './seed.module';
     UserModule,
     SeedModule,
   ],
-  controllers: [AppController],
+  controllers: [UserController, ExchangeController],
   providers: [AppService],
 })
 export class AppModule {}
