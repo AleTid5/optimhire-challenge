@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
 import { AuthModule } from './auth.module';
@@ -8,7 +9,8 @@ import { SeedModule } from './seed.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/optimhire_challenge'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODB_CONNECTION_URI),
     AuthModule,
     UserModule,
     SeedModule,

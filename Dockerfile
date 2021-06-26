@@ -2,7 +2,7 @@
 FROM node:14 as builder
 WORKDIR /app
 COPY ./package.json ./
-RUN npm install
+RUN npm install --no-optional && npm cache clean --force
 COPY . .
 RUN npm run build
 
@@ -11,5 +11,4 @@ FROM node:14-alpine
 WORKDIR /app
 COPY --from=builder /app ./
 EXPOSE 3000
-CMD ["npx", "nestjs-command", "database:seed:users"]
 CMD ["npm", "run", "start:prod"]

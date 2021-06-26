@@ -8,9 +8,18 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app
-      - /app/node_modules
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
     ports:
       - 3000:3000
     command: npm run start:dev
-    env_file:
-      - .env
+    environment:
+      - MONGODB_CONNECTION_URI=mongodb://mongodb:27017/optimhire_challenge
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
