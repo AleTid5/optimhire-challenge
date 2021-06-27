@@ -32,6 +32,6 @@ export default class BanxicoService extends AbstractExchangeProviderService {
     const [{ dato, fecha }] = this.results.reverse();
 
     this.exchange.value = this.getParsedCurrency(dato);
-    this.exchange.lastUpdated = fecha;
+    this.exchange.lastUpdated = this.getParsedDate(fecha);
   }
 }

@@ -21,9 +21,11 @@ export class ExchangeService {
 
     const banxico = await this.banxicoService.execute();
     const fixer = await this.fixerService.execute();
+    const dof = await this.dofService.execute();
 
     return {
       banxico,
+      dof,
       fixer,
     };
   }

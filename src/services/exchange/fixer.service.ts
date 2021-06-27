@@ -29,6 +29,6 @@ export default class FixerService extends AbstractExchangeProviderService {
 
     // In the free plan, the base is EUR, we have to divide the MXN price with the USD price.
     this.exchange.value = this.getParsedCurrency((MXN / USD).toString());
-    this.exchange.lastUpdated = date;
+    this.exchange.lastUpdated = this.getParsedDate(date, 'YYYY-MM-DD');
   }
 }
