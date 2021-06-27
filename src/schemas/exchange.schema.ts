@@ -9,7 +9,7 @@ export class Exchange {
   lastUpdated: string;
 
   @Prop()
-  value: number;
+  value: string;
 }
 
 export const ExchangeSchema = SchemaFactory.createForClass(Exchange);

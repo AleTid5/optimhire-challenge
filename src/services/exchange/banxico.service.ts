@@ -25,10 +25,13 @@ export default class BanxicoService extends AbstractExchangeProviderService {
           );
       });
 
-    const results = await getResults();
-    const [{ dato, fecha }] = results.reverse();
+    this.results = await getResults();
+  }
 
-    this.exchange.value = dato;
+  protected transformData(): void {
+    const [{ dato, fecha }] = this.results.reverse();
+
+    this.exchange.value = this.getParsedCurrency(dato);
     this.exchange.lastUpdated = fecha;
   }
 }
