@@ -6,8 +6,4 @@ export default class FixerService extends AbstractExchangeProviderService {
   protected async fetchData(): Promise<void> {
     console.log(123);
   }
-
-  protected transformData(): void {
-    console.log(123);
-  }
 }

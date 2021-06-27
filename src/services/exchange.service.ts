@@ -19,9 +19,11 @@ export class ExchangeService {
 
     // this.userCanMakeRequests(userId, user.limit);
 
-    const banxicoService = await this.banxicoService.execute();
+    const banxico = await this.banxicoService.execute();
 
-    return 123;
+    return {
+      banxico,
+    };
   }
 
   /**
