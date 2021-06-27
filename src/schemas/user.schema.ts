@@ -13,6 +13,12 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop({
+    type: Number,
+    default: 10,
+  })
+  limit: number;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,12 +1,14 @@
 import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
+import { ExchangeService } from '../services/exchange.service';
 
 @Controller()
 export class ExchangeController {
-  // This guard will authenticate any request
+  constructor(private exchangeService: ExchangeService) {}
+
   @UseGuards(JwtAuthGuard)
-  @Get('exchange')
-  getProfile(@Request() req) {
-    return req.user;
+  @Get('api/exchange')
+  getExchange(@Request() req) {
+    return this.exchangeService.getCurrentExchange(req.user.id);
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, UpdateWriteOpResult } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from '../schemas/user.schema';
 
@@ -10,7 +10,14 @@ export class UserService {
     private userDocumentModel: Model<UserDocument>,
   ) {}
 
-  async findOne(username: string, password: string): Promise<UserDocument> {
+  findByUserId(userId: string): Promise<UserDocument> {
+    return this.userDocumentModel.findOne({ _id: userId }).exec();
+  }
+
+  findByUsernameAndPassword(
+    username: string,
+    password: string,
+  ): Promise<UserDocument> {
     return this.userDocumentModel.findOne({ username, password }).exec();
   }
 
@@ -19,5 +26,11 @@ export class UserService {
       username,
       password,
     });
+  }
+
+  decrementLimit(userId: string): Promise<UpdateWriteOpResult> {
+    return this.userDocumentModel
+      .updateOne({ _id: userId }, { $inc: { limit: -1 } })
+      .exec();
   }
 }
