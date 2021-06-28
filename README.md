@@ -24,7 +24,10 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a web service which exposes the current exchange rate of USD to MXN from three
+different sources in the same endpoint (a JSON API, an XML API and a scrapped site). Users can make 10 requests every 30 minutes.
+
+The challenge has been built using [Nest](https://github.com/nestjs/nest) and the database used is [MongoDB](https://www.mongodb.com/).
 
 ## Installation
 
@@ -33,6 +36,9 @@ $ npm install
 ```
 
 ## Running the app
+### There 2 ways to run the app.
+
+- The first one is a local way, where you have to have running MongoDB in the port 27027.
 
 ```bash
 # development
@@ -44,6 +50,17 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+> ###### Note: To seed the database you've to run `npx nestjs-command database:seed:users`
+
+- The other way is using [Docker](https://www.docker.com/) 🐳
+
+```bash
+# development
+$ docker-compose up
+```
+
+> ###### Note: By using this way, the users will be automatically migrated
 
 ## Test
 
@@ -58,15 +75,31 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## How to use it
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+1. First we have to make a request to `http://localhost:3000/api/user/login` using some [user](#users)
+2. The user should be sent in the data (x-www-form-urlencoded if using Postman)
+3. If the authentication is OK, the server will respond with a JWT token
+4. Now have 60s to use this token to make the request to `http://localhost:3000/api/exchange`.
+   
+> ###### Note: We have to add the token in the header of the request `Authorization: Bearer {your-token}` 
 
-## Stay in touch
+## <a id="users"></a> Mocked users
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```js
+{
+  users: [
+    {
+      username: "jhon@test.com",
+      password: "fake123"
+    },
+    {
+      username: "robert@test.com",
+      password: "hello123"
+    }
+  ]
+}
+```
 
 ## License
 
