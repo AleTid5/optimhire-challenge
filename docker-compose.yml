@@ -14,7 +14,7 @@ services:
       - mongodb
     ports:
       - 3000:3000
-    command: npm run start:dev
+    command: sh -c "npx nestjs-command database:seed:users && npm run start:dev"
     environment:
       - MONGODB_CONNECTION_URI=mongodb://mongodb:27017/optimhire_challenge
   mongodb:

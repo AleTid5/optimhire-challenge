@@ -17,7 +17,7 @@ export class ExchangeService {
   async getCurrentExchange(userId: string) {
     const user: User = await this.usersService.findByUserId(userId);
 
-    // this.userCanMakeRequests(userId, user.limit);
+    this.userCanMakeRequests(userId, user.limit);
 
     const banxico = await this.banxicoService.execute();
     const fixer = await this.fixerService.execute();

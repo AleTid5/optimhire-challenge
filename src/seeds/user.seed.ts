@@ -12,6 +12,15 @@ export class UserSeed {
     autoExit: true,
   })
   async create() {
+    if (
+      await this.userService.findByUsernameAndPassword(
+        'jhon@test.com',
+        'fake123',
+      )
+    ) {
+      return;
+    }
+
     await this.userService.add({
       username: 'jhon@test.com',
       password: 'fake123',
