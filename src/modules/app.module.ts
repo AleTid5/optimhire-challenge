@@ -7,6 +7,7 @@ import { AuthModule } from './auth.module';
 import { UserModule } from './user.module';
 import { SeedModule } from './seed.module';
 import { ExchangeModule } from './exchange.module';
+import { WorkerModule } from './worker.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ExchangeModule } from './exchange.module';
     ExchangeModule,
     UserModule,
     SeedModule,
+    WorkerModule,
   ],
   controllers: [UserController, ExchangeController],
 })

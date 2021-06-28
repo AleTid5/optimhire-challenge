@@ -33,4 +33,10 @@ export class UserService {
       .updateOne({ _id: userId }, { $inc: { limit: -1 } })
       .exec();
   }
+
+  resetUsersLimit(): void {
+    this.userDocumentModel
+      .updateMany({ limit: { $lt: 10 } }, { limit: 10 })
+      .exec();
+  }
 }
