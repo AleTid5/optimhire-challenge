@@ -26,7 +26,7 @@
 
 ## Description
 
-This is a web service which exposes the current exchange rate of USD to MXN from three
+This is a web service which expose the current exchange rate of USD to MXN from three
 different sources in the same endpoint (a JSON API, an XML API and a scrapped site). Users can make 10 requests every 30 minutes.
 
 The challenge has been built using [Nest](https://github.com/nestjs/nest) and the database used is [MongoDB](https://www.mongodb.com/).
@@ -81,8 +81,8 @@ $ npm run test:cov
 
 1. First we have to make a request to `http://localhost:3000/api/user/login` using some [user](#users)
 2. The user should be sent in the data (x-www-form-urlencoded if using Postman)
-3. If the authentication is OK, the server will respond with a JWT token
-4. Now have 60s to use this token to make the request to `http://localhost:3000/api/exchange`.
+3. If the authentication is OK, the server will respond with an `access_token` (JWT)
+4. Now we have 60s to use this token to make the request to `http://localhost:3000/api/exchange`.
    
 > ###### Note: We have to add the token in the header of the request `Authorization: Bearer {your-token}` 
 
